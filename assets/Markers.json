@@ -27,7 +27,7 @@
     },
     {
         "id": 3,
-        "imgsrc":"src\\assets\\User_Images\\Sinkhole1_news.jpg",
+        "imgsrc":"public\\assets\\Sinkhole1_news.jpg",
         "name": "Marker 3",
         "lat": 39.1231,
         "lng": -84.5320,
@@ -79,7 +79,7 @@
     },
     {
         "id": 7,
-        "imgsrc":"src\\assets\\User_Images\\Sinkhole2.jpg",
+        "imgsrc":"public\\assets\\Sinkhole2.jpg",
         "name": "Marker 7",
         "lat": 39.1631,
         "lng": -84.5720,
@@ -261,7 +261,7 @@
     },
     {
         "id": 21,
-        "imgsrc":"src\\assets\\User_Images\\Tornado3.jpg",
+        "imgsrc":"public\\assets\\Tornado3.jpg",
         "name": "Marker 21",
         "lat": 39.3031,
         "lng": -84.7120,
@@ -287,7 +287,7 @@
     },
     {
         "id": 23,
-        "imgsrc":"src\\assets\\User_Images\\Tornado2.jpg",
+        "imgsrc":"public\\assets\\Tornado2.jpg",
         "name": "Marker 23",
         "lat": 39.3231,
         "lng": -84.7320,
@@ -300,7 +300,7 @@
     },
     {
         "id": 24,
-        "imgsrc":"src\\assets\\User_Images\\Tornado1.jpg",
+        "imgsrc":"public\\assets\\Tornado1.jpg",
         "name": "Marker 24",
         "lat": 39.3331,
         "lng": -84.7420,
@@ -313,7 +313,7 @@
     },
     {
         "id": 25,
-        "imgsrc":"src\\assets\\User_Images\\Hurricane2.jpg",
+        "imgsrc":"public\\assets\\Hurricane2.jpg",
         "name": "Marker 25",
         "lat": 39.3431,
         "lng": -84.7520,
@@ -339,7 +339,7 @@
     },
     {
         "id": 27,
-        "imgsrc":"src\\assets\\User_Images\\Hurricane1.jpg",
+        "imgsrc":"public\\assets\\Hurricane1.jpg",
         "name": "Marker 27",
         "lat": 39.3631,
         "lng": -84.7720,
@@ -482,7 +482,7 @@
     },
     {
         "id": 38,
-        "imgsrc":"src\\assets\\User_Images\\SnowStorm1.jpg",
+        "imgsrc":"public\\assets\\SnowStorm1.jpg",
         "name": "Marker 38",
         "lat": 39.4731,
         "lng": -84.8820,
@@ -521,7 +521,7 @@
     },
     {
         "id": 41,
-        "imgsrc":"src\\assets\\User_Images\\SnowStorm2.jpg",
+        "imgsrc":"public\\assets\\SnowStorm2.jpg",
         "name": "Marker 41",
         "lat": 39.5031,
         "lng": -84.9120,

@@ -1,5 +1,5 @@
 <script>
-    import {getContext} from 'svelte';
+    import {getContext, afterUpdate} from 'svelte';
     export let headers = [];
     export let data = [];
   
@@ -40,15 +40,16 @@
             default:
                 return 'src\\assets\\Weather_Logo.png';
         }
+    } 
+
+    function handle_click(id){
+        setSelectedMarker(id);
+        selectedMarker = getSelectedMarker();
     }
 
-     $: selectedMarker = getSelectedMarker();
-    $: if (selectedMarker) {
-        const element = document.getElementById(`item-${selectedMarker.id}`);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }   
+    afterUpdate(() => {
+        selectedMarker = getSelectedMarker();
+    });
 
 </script>
   
@@ -63,21 +64,59 @@
 
     <div class="data-list">
     {#each filtered as item}
-      <div class="data-item" on:click={()=> setSelectedMarker(item.id )}>
-        <div class="item-header">
-            <img src={getIcon(item.type)} alt={item.type} class = icon/>
-            <div><strong>Type:</strong> {item.type}</div>
-            <div> {item.posttime}</div>
-        </div>
-        <div class="item-header">Urgency:<strong>{item.urgency}</strong></div>
-        {#if item.imgsrc !==""}
-          <div class="item-image">
-            <img src={item.imgsrc} alt={item.type} />
-          </div> 
+        {#if selectedMarker !== null && selectedMarker.id === item.id}
+            <div class="data-item highlight" on:click={()=> handle_click(item.id)}>
+                <div class="item-header">
+                    <img src={getIcon(item.type)} alt={item.type} class = icon/>
+                    <div><strong>Type:</strong> {item.type}</div>
+                    <div> {item.posttime}</div>
+                </div>
+                <div class="item-header">Urgency:<strong>{item.urgency}</strong></div>
+                {#if item.imgsrc !==""}
+                <div class="item-image">
+                    <img src={item.imgsrc} alt={item.type} />
+                </div> 
+                {/if}
+                <div class="item-description">{item.description}</div>
+                <div class="item-header"><strong>Source:</strong> <a href="{item.source}" target="_blank">{item.source}</a></div>
+            </div>
         {/if}
-        <div class="item-description">{item.description}</div>
-        <div class="item-header"><strong>Source:</strong> <a href="{item.source}" target="_blank">{item.source}</a></div>
-      </div>
+
+        {#if selectedMarker !== null && selectedMarker.id !== item.id}
+            <div class="data-item" on:click={()=> handle_click(item.id)}>
+                <div class="item-header">
+                    <img src={getIcon(item.type)} alt={item.type} class = icon/>
+                    <div><strong>Type:</strong> {item.type}</div>
+                    <div> {item.posttime}</div>
+                </div>
+                <div class="item-header">Urgency:<strong>{item.urgency}</strong></div>
+                {#if item.imgsrc !==""}
+                <div class="item-image">
+                    <img src={item.imgsrc} alt={item.type} />
+                </div> 
+                {/if}
+                <div class="item-description">{item.description}</div>
+                <div class="item-header"><strong>Source:</strong> <a href="{item.source}" target="_blank">{item.source}</a></div>
+            </div>
+        {/if}
+
+        {#if selectedMarker === null}
+            <div class="data-item" on:click={()=> handle_click(item.id )}>
+                <div class="item-header">
+                    <img src={getIcon(item.type)} alt={item.type} class = icon/>
+                    <div><strong>Type:</strong> {item.type}</div>
+                    <div> {item.posttime}</div>
+                </div>
+                <div class="item-header">Urgency:<strong>{item.urgency}</strong></div>
+                {#if item.imgsrc !==""}
+                <div class="item-image">
+                    <img src={item.imgsrc} alt={item.type} />
+                </div> 
+                {/if}
+                <div class="item-description">{item.description}</div>
+                <div class="item-header"><strong>Source:</strong> <a href="{item.source}" target="_blank">{item.source}</a></div>
+            </div>
+        {/if}
     {/each}
     </div>
 </main>
@@ -161,5 +200,10 @@
       height: 24px; /* Adjust the height as needed */
       margin-right: 0.5rem; /* Optional: Add some space to the right of the icon */
       vertical-align: middle; /* Align the icon vertically with the text */
+    }
+    :global(.highlight) {
+        
+        border: 2px solid #000; /* Highlight border */
+        box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.7); /* Add a glow effect */
     }
 </style>

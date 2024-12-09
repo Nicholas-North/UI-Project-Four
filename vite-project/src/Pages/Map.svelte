@@ -61,7 +61,71 @@
         center={[-20, 0]}
     >
         {#each formattedMarkers as { lngLat, label, name, urgency, type }}
-            <Marker
+            <!-- {#if 1 === 1}
+                <Marker
+                    {lngLat}
+                    draggable={false}
+                    onclick={() => setSelectedMarker(label)}
+                    class={`marker ${urgency} ${selectedMarker && selectedMarker.id === label ? 'highlight' : ''}`}
+                >
+                <span class="pin">
+                    <img src={getIcon(type)} alt={type} class="icon" />
+                </span>
+            
+                <Popup openOn="hover" offset={[0, -10]}>
+                    <div class="text-lg font-bold">{name}</div>
+                </Popup>
+                </Marker>
+            {/if} -->
+            {#if selectedMarker !== null && Number(label) === Number(selectedMarker.id)}
+                <Marker
+                    {lngLat}
+                    draggable={false}
+                    onclick={() => setSelectedMarker(label)}
+                    class={`marker ${urgency} highlight`}
+                >
+                <span class="pin">
+                    <img src={getIcon(type)} alt={type} class="icon" />
+                </span>
+            
+                <Popup openOn="hover" offset={[0, -10]}>
+                    <div class="text-lg font-bold">{name}</div>
+                </Popup>
+                </Marker>
+            {/if}
+            {#if selectedMarker !== null && Number(label) !== Number(selectedMarker.id)}
+                <Marker
+                    {lngLat}
+                    draggable={false}
+                    onclick={() => setSelectedMarker(label)}
+                    class={`marker ${urgency}`}
+                >
+                <span class="pin">
+                    <img src={getIcon(type)} alt={type} class="icon" />
+                </span>
+
+                <Popup openOn="hover" offset={[0, -10]}>
+                    <div class="text-lg font-bold">{name}</div>
+                </Popup>
+                </Marker>
+            {/if}
+            {#if selectedMarker === null}
+                <Marker
+                    {lngLat}
+                    draggable={false}
+                    onclick={() => setSelectedMarker(label)}
+                    class={`marker ${urgency}`}
+                >
+                <span class="pin">
+                    <img src={getIcon(type)} alt={type} class="icon" />
+                </span>
+
+                <Popup openOn="hover" offset={[0, -10]}>
+                    <div class="text-lg font-bold">{name}</div>
+                </Popup>
+                </Marker>
+            {/if}
+            <!-- <Marker
                 {lngLat}
                 draggable={false}
                 onclick={() => setSelectedMarker(label)}
@@ -74,7 +138,7 @@
             <Popup openOn="hover" offset={[0, -10]}>
                 <div class="text-lg font-bold">{name}</div>
             </Popup>
-            </Marker>
+            </Marker> -->
         {/each}
     </MapLibre>
     <div class="list-container">
